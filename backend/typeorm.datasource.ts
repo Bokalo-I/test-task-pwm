@@ -1,0 +1,23 @@
+import { basename, join } from 'path';
+import { DataSource } from 'typeorm';
+
+import { Environment } from '@/shared/variables/environment';
+
+const isDist = basename(__dirname) === 'dist';
+const filesExtension = isDist ? '.js' : '.ts';
+
+const dataSource = new DataSource({
+  type: 'postgres',
+  host: Environment.DATABASE_HOST,
+  port: Environment.DATABASE_PORT,
+  username: Environment.DATABASE_USER,
+  password: Environment.DATABASE_PASSWORD,
+  database: Environment.DATABASE_NAME,
+
+  migrationsRun: true,
+
+  entities: [join(__dirname, '/**/entities/*.entity' + filesExtension)],
+  migrations: [join(__dirname, '/**/migrations/*' + filesExtension)],
+});
+
+export default dataSource;

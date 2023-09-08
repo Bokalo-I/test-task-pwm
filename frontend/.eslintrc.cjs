@@ -1,0 +1,36 @@
+module.exports = {
+  parser: '@typescript-eslint/parser',
+  plugins: ['react-refresh', '@typescript-eslint', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:import/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'plugin:import/typescript',
+    'eslint-config-prettier',
+  ],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  root: true,
+  settings: {
+    react: { version: 'detect' },
+    'import/resolver': {
+      typescript: {},
+      node: {},
+    },
+  },
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    'jsx-a11y/aria-proptypes': 'off',
+    'import/no-named-as-default-member': 'off',
+    'import/no-named-as-default': 'off',
+    'object-curly-spacing': [1, 'always'],
+    'no-trailing-spaces': [1],
+    'max-len': ['error', { code: 120, ignoreStrings: true }],
+    quotes: [1, 'single', { avoidEscape: true }],
+  },
+};
